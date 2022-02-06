@@ -64,6 +64,7 @@ public class HandPresence : MonoBehaviour
             }
             else
             {
+                Debug.LogError("Misä mun controlleri");
                 spawnedController = Instantiate(controllerPrefabs[0], transform);
             }
 
