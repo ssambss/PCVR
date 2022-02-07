@@ -7,8 +7,10 @@ public class EXPLODE : MonoBehaviour
 {
     [SerializeField] private float threshold = 0.1f;
     [SerializeField] private float deadZone = 0.025f;
-    [SerializeField] ParticleSystem kaboom;
+    [SerializeField] ParticleSystem cannonParticle, kaboom;
+    [SerializeField] AudioSource cannon, posankka;
 
+    private MeshRenderer posank;
     private float counter = 0;
     private bool isPressed;
     private Vector3 startPos;
@@ -20,6 +22,7 @@ public class EXPLODE : MonoBehaviour
     {
         startPos = transform.localPosition;
         joint = GetComponent<ConfigurableJoint>();
+        posank = posankka.GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -61,6 +64,16 @@ public class EXPLODE : MonoBehaviour
 
     public void PlayParticles()
     {
+        cannon.Play(0);
+        cannonParticle.Play();
+        StartCoroutine(WaitForSeconds());
+    }
+
+    IEnumerator WaitForSeconds()
+    {
+        yield return new WaitForSeconds(1f);
         kaboom.Play();
+        posankka.Play(0);
+        posank.enabled = false;
     }
 }
