@@ -34,7 +34,6 @@ public class AimCannon : MonoBehaviour
         {
             isPressed = false;
         }
-
     }
 
     private float GetValue()
